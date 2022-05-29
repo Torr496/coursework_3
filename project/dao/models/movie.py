@@ -18,5 +18,5 @@ class Movie(BaseMixin, db.Model):
     director = db.relationship("Director")
 
     def __repr__(self):
-        return f"<Movie '{self.title.title()}'>"
+        return f"<Movie '{self.title}'>"
 

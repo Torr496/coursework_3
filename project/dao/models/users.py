@@ -13,5 +13,5 @@ class User(BaseMixin, db.Model):
     # favorite_genre = db.Column(db.String(155), nullable=True)
 
     def __repr__(self):
-        return f"<User '{self.title.title()}'>"
+        return f"<User '{self.name}'>"
 

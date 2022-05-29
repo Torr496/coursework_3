@@ -12,7 +12,8 @@ class UsersService(BaseService):
         user = UserDAO(self._db_session).get_by_email(email)
         if not user:
             raise ItemNotFound
-        return UserSchema().dump(user)
+        print(user)
+        return user
 
     def get_item_by_id(self, pk):
         user = UserDAO(self._db_session).get_by_email(pk)
@@ -35,7 +36,7 @@ class UsersService(BaseService):
         if user_pass:
             data_in["password"] = generate_password_digest(user_pass)
         user = UserDAO(self._db_session).create(data_in)
-        return UserSchema().dump(user)
+        return "Пользователь создан"
 
     def update(self, data_in):
         user = UserDAO(self._db_session).update(data_in)
