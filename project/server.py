@@ -2,13 +2,14 @@ from flask import Flask
 from flask_cors import CORS
 from flask_restx import Api
 
-from project.setup_db import db
-from project.views import genres_ns
-from project.views import directors_ns
-from project.views import users_ns
-from project.views import auth_ns
-from project.views import movie_ns
 from config import DevelopmentConfig
+from setup_db import db
+from views import genres_ns
+from views import directors_ns
+from views import users_ns
+from views import auth_ns
+from views import movie_ns
+
 
 api = Api(
     authorizations={

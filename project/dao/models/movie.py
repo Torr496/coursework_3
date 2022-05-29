@@ -5,7 +5,7 @@ from project.setup_db import db
 
 
 class Movie(BaseMixin, db.Model):
-    __tablename__ = 'director'
+    __tablename__ = 'movie'
 
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
