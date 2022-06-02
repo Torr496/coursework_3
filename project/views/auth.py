@@ -16,7 +16,7 @@ class AuthView(Resource):
             abort(400, message="Bad request")
         try:
             user = UsersService(db.session).get_item_by_email(email=req_json.get("email"))
-            tokens = login_user(request.json, user)
+            tokens = login_user(user, req_json)
             return tokens, 200
         except ItemNotFound:
             abort(401, message="Authorization Error")

@@ -12,12 +12,12 @@ from project.exceptions import ItemNotFound
 
 
 def generate_password_digest(password):
-    return hashlib.pbkdf2_hmac(
+    return base64.b64encode(hashlib.pbkdf2_hmac(
         hash_name="sha256",
         password=password.encode("utf-8"),
         salt=current_app.config["PWD_HASH_SALT"],
         iterations=current_app.config["PWD_HASH_ITERATIONS"],
-    )
+    ))
 
 
 def auth_check():
@@ -66,21 +66,12 @@ def generate_token(data):
 
 
 def compare_passwords(password_hash, other_password):
-    return hmac.compare_digest(
-        base64.b64decode(password_hash),
-        hashlib.pbkdf2_hmac('sha256', other_password.encode('utf-8'), current_app.config["PWD_HASH_SALT"], current_app.config["PWD_HASH_ITERATIONS"] )
-    )
+    return  hmac.compare_digest(password_hash, generate_password_digest(other_password))
 
 
-def login_user(req_json, user):
-    user_email = req_json.get("email")
-    user_pass = req_json.get("password")
-    if user_email and user_pass:
-        pass_hashed = user["password"]
-        req_json["role"] = user["role"]
-        req_json["id"] = user["id"]
-        if compare_passwords(pass_hashed, user_pass):
-                return generate_token(req_json)
+def login_user(user, req_json):
+    if compare_passwords(user.password, req_json['password']):
+        return generate_token(req_json)
     raise ItemNotFound
 
 

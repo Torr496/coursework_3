@@ -2,13 +2,13 @@ from flask import Flask
 from flask_cors import CORS
 from flask_restx import Api
 
-from config import DevelopmentConfig
-from setup_db import db
-from views import genres_ns
-from views import directors_ns
-from views import users_ns
-from views import auth_ns
-from views import movie_ns
+from project.config import DevelopmentConfig
+from project.setup_db import db
+from project.views import genres_ns
+from project.views import directors_ns
+from project.views import users_ns
+from project.views import auth_ns
+from project.views import movie_ns
 
 
 api = Api(
@@ -41,8 +41,4 @@ def create_app(config_obj):
     return app
 
 
-app = create_app(DevelopmentConfig())
-app.debug = True
 
-if __name__ == '__main__':
-    app.run(host="localhost", port=10001, debug=True)
