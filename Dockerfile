@@ -8,6 +8,7 @@ ENV FLASK_ENV='development'
 WORKDIR /code
 COPY ./project ./project
 COPY ./tests ./tests
+COPY ./project.db ./project.db
 COPY run.py .
 
 
