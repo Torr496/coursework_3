@@ -5,6 +5,7 @@ Flask-CORS
 Flask-SQLAlchemy
 marshmallow~=3.15.0
 PyJWT
+werkzeug==2.1.2
 
 # For test
 pytest~=7.1.1
